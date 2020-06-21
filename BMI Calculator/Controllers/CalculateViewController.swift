@@ -23,11 +23,21 @@ class CalculateViewController: UIViewController {
     }
 
     @IBAction func heightSliderChanged(_ sender: UISlider) {
-        heightLabel.text = "\((Float(round(100 * sender.value) / 100)))m"
+        let meters = sender.value
+        let inches = Int(meters * 39.37)
+        let feet = Int(inches / 12)
+        let plusInches = inches % 12
+        heightLabel.text = "\(feet)ft \(plusInches)in"
+        
+        // use below code instead for meters
+        // heightLabel.text = "\((Float(round(100 * sender.value) / 100)))m"
     }
     
     @IBAction func weightSliderChanged(_ sender: UISlider) {
-        weightLabel.text = "\(Int(sender.value))kg"
+        weightLabel.text = "\(Int(sender.value * 2.2))lbs"
+        
+        // use below code instead for kilos
+        // weightLabel.text = "\(Int(sender.value))kg"
     }
     @IBAction func calculateTapped(_ sender: UIButton) {
         let height = heightSlider.value
